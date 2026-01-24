@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Jallikattu.Models.BlogPostsTable>
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+
+
+    <div id="BDContainer" class="container">
+
+
+        <div class="row mt-4 gy-4">
+
+            <h2>Blog</h2>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4">
+
+                    <div class="card h-100">
+
+                        <img class="card-img-fixed" src="@item.ImageURL" alt="">
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">@item.BlogTitle</h3>
+
+                            <p> @item.CreatedAt.ToString("dd MMM yyyy | hh:mm tt")</p>
+
+                            <p class="card-text">
+                                @if (item.BlogContent != null)
+                                {
+                                    @item.BlogContent.Substring(0, Math.Min(120, item.BlogContent.Length))@:
+                                }
+                            </p>
+
+                            <div class="mt-auto">
+
+                                <a href="@Url.Action("PostDetails", "BlogInfo", new {id=item.PostID})" class="btn btn-primary ">Read more</a>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+
+    </div>
+
+
+</main>
+

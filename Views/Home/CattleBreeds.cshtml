@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Jallikattu.Models.CattleBreedsTable>
+@{
+    ViewBag.Title = "CattleBreeds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CattleBreeds</h2>
+
+<main>
+
+    <div id="BDContainer" class="container">
+
+
+        <div class="row mt-4 gy-4">
+
+            <h2>Cattle Breeds</h2>
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4">
+
+                    <div class="card h-100">
+
+                        <img class="card-img-fixed" src="@item.ImageURL" alt="">
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">@item.BreedName</h3>
+
+                            <p class="card-text">
+                                @if (item.Description != null)
+                                {
+                                    @item.Description.Substring(0, Math.Min(120, item.Description.Length))@:
+                                }
+                            </p>
+
+                            <div class="mt-auto">
+
+                                <a href="@Url.Action("Details", "CattleInfo", new {id=item.CattleID})" class="btn btn-primary ">Read more</a>
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+            @*<div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/Kangeyam_Bull.jpg" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Kangayam</h3>
+
+                        <p class="card-text">
+                            The Kangayam is a strong Indian draught cattle breed from Tamil Nadu.
+                            Known for toughness, endurance, and suitability for dry regions. Frequently used for farming, transport, and Jallikattu activities.
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="@Url.Action("CattleInfo", "CattleInfo")" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/Pulikulam_Bull.jpg" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Pulikulam</h3>
+
+                        <p class="card-text">
+                            The Pulikulam is an indigenous Indian zebu (Bos indicus) cattle breed from Tamil Nadu. Its name comes from Pulikulam village in Sivagangai district.
+                            Pulikulam cattle are known for their strength
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="#" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/Umblachery_Bull.JPG" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Umblachery</h3>
+
+                        <p class="card-text">
+                            The Umblachery is an Indian breed of zebuine cattle. It is distributed in the coastal plains of Tamil Nadu in South India.
+                            It is known for its strength, compact build, and suitability for working in wet and heavy rice paddy fields.
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="#" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/Alambadi_Bull.jpg" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Alambadi</h3>
+
+                        <p class="card-text">
+                            The Alambadi is a traditional Indian draught cattle breed from Tamil Nadu, primarily reared for agricultural work.
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="#" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/nattu kuttai.jpg" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Nattu Kuttai</h3>
+
+                        <p class="card-text">
+                            The Nattu Kuttai is a local indigenous cattle breed from Southern India, primarily Tamil Nadu. These cattle are generally small, hardy,
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="#" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-4">
+
+                <div class="card h-100">
+
+                    <img class="card-img-fixed" src="~/Images/Bulls & cows/Masilum_cow.jpg" alt="">
+
+                    <div class="card-body">
+
+                        <h3 class="card-title">Masilum</h3>
+
+                        <p class="card-text">
+                            Masilum is a small sized but well-built and sturdy cattle of Meghalaya. It is well adapted to the hill ecosystem.
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <a href="#" class="btn btn-primary ">Read more</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>*@
+
+        </div>
+
+
+    </div>
+
+</main>
+

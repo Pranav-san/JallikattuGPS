@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Jallikattu GPS</title>
+
+    <link rel="icon" href="~/Images/icon/Icon_1.png" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
+    <!-- Site CSS -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            padding-top: 80px;
+            background-color: #f8f9fa;
+        }
+
+        /* NAVBAR */
+        .custom-navbar {
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+
+        #icon {
+            height: 40px;
+        }
+
+        .brand-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #2f3e34;
+        }
+
+        .custom-navbar .nav-link {
+            color: #333 !important;
+            font-family: Bahnschrift;
+            font-size: 16px;
+        }
+
+            .custom-navbar .nav-link:hover {
+                color: #2f3e34 !important;
+                text-decoration: underline;
+                text-underline-offset: 6px;
+            }
+
+            .custom-navbar .nav-link.active {
+                text-decoration: underline;
+            }
+
+        /* SEARCH */
+        #SearchBar {
+            min-width: 220px;
+            max-width: 280px;
+            border-radius: 20px;
+            padding-left: 14px;
+            border: 1px solid #ccc;
+        }
+
+        /* AUTH BUTTONS */
+        .btn-login {
+            color: #555;
+            border: 1px solid #bbb;
+            background-color: transparent;
+        }
+
+            .btn-login:hover {
+                background-color: #e9ecef;
+                color: #333;
+            }
+
+        .btn-register {
+            background-color: #5f8f6f;
+            color: #ffffff;
+            border: none;
+        }
+
+            .btn-register:hover {
+                background-color: #4f7f60;
+            }
+
+        /* CONTENT FIX */
+        #Cattle-info-Main-Container {
+            padding-top: 120px;
+        }
+
+        .card-img-fixed {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        footer {
+            margin-top: 60px;
+            /*background-color: #2f3e34;*/
+        }
+
+        @@media (max-width: 991px) {
+            #SearchBar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid">
+
+
+            <a class="navbar-brand d-flex align-items-center" href="@Url.Action("Index", "Home")">
+                <img id="icon" class="me-1 mb-1 rounded" src="~/Images/icon/Icon_1.png" alt="Logo" />
+                <span class="brand-text">JallikattuGPS</span>
+            </a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <!-- Nav Links -->
+                <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog", "Home")">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")#View-Calendar">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Products", "Home")">GPS Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a></li>
+                </ul>
+
+
+                <form class="d-flex mb-3 mb-lg-0 me-lg-3">
+                    <input id="SearchBar" class="form-control" placeholder="Search Kangayam, jall..." />
+                </form>
+
+                <!-- AUTH SECTION -->
+                <div class="d-flex align-items-center gap-2">
+
+                    @if (Session["UserID"] == null)
+                    {
+                        <a href="@Url.Action("Login", "Auth")" class="btn btn-login btn-sm">
+                            Login
+                        </a>
+
+                        <a href="@Url.Action("Register", "Auth")" class="btn btn-register btn-sm">
+                            Register
+                        </a>
+                    }
+                    else
+                    {
+
+
+                        <span class="text-muted small me-2">
+                            @if (Session["Role"].ToString() == "Admin")
+                            {
+                                <a style="text-decoration:none" href="@Url.Action("AdminDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @Session["UserName"]</a>
+
+                            }
+                            else
+                            {
+                                <a style="text-decoration:none" href="@Url.Action("UserDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @Session["UserName"]</a>
+
+                            }
+
+
+                        </span>
+
+                        <a href="@Url.Action("Logout", "Auth")"
+                           class="btn btn-outline-danger btn-sm">
+                            Logout
+                        </a>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <main class="container-fluid">
+        @RenderBody()
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-white mt-5" style="background-color: #3c3c3c">
+        <div class="container py-5">
+
+            <div class="row text-start">
+
+                <!-- COMPANY INFO -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold">Jallikattu GPS</h5>
+                    <p class="small text-light">
+                        Smart GPS tracking solutions designed to protect and monitor
+                        cattle with reliability and ease. Built for farmers, owners,
+                        and traditional cattle sports.
+                    </p>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li>
+                            <a href="@Url.Action("Index","Home")"
+                               class="text-white text-decoration-none">Home</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("CattleBreeds","Home")"
+                               class="text-white text-decoration-none">Cattle Breeds</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Products","Home")"
+                               class="text-white text-decoration-none">Products</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Contact","Home")"
+                            class="text-white text-decoration-none">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="fw-bold">Contact</h6>
+                    <p class="small mb-1">
+                        Rapsys Info Tech<br />
+                        Chennai, Tamil Nadu
+                    </p>
+                    <p class="small mb-1">
+                        📧 kathir@rapsys.in
+                    </p>
+                    <p class="small mb-0">
+                        📞 +91 96264 51919
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="border-light" />
+
+            <!-- BOTTOM BAR -->
+            <div class="text-center small">
+                <p class="mb-1">
+                    &copy; @DateTime.Now.Year - Rapsys Info Tech. All Rights Reserved.
+                </p>
+                <a href="#" class="text-white text-decoration-none me-3">
+                    Privacy Policy
+                </a>
+                <a href="#" class="text-white text-decoration-none">
+                    Terms of Service
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+
+</html>

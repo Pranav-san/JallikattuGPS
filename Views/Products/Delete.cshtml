@@ -1,0 +1,80 @@
+﻿@model Jallikattu.Models.Product
+
+@{
+    ViewBag.Title = "Delete Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Confirm Product Deletion</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Warning -->
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> This action cannot be undone.
+                        Are you sure you want to permanently delete this product?
+                    </div>
+
+                    <!-- Product Preview -->
+                    <div class="row mb-4 align-items-center">
+                        <div class="col-md-4 text-center">
+                            <img src="@Model.ImageURL"
+                                 alt="@Model.ProductName"
+                                 class="img-fluid rounded shadow-sm"
+                                 style="max-height:160px; object-fit:cover;">
+                        </div>
+
+                        <div class="col-md-8">
+                            <h5 class="fw-bold">@Model.ProductName</h5>
+
+                            <p class="mb-1">
+                                <strong>Price:</strong>
+                                ₹ @Model.Price
+                            </p>
+
+                            <p class="mb-1">
+                                <strong>Stock:</strong>
+                                @Model.Stock units
+                            </p>
+
+                            @if (!string.IsNullOrEmpty(Model.Description))
+                            {
+                                <p class="text-muted small mt-2">
+                                    @Model.Description.Substring(0, Math.Min(120, Model.Description.Length))
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.ProductID)
+
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("Index")"
+                               class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger px-4">
+                                Delete Permanently
+                            </button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "AdminDashBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminDashBoard</h2>
+
+<div class="row mt-4">
+
+    <div class="col-md-6 mb-4">
+        <a href="/CattleBreeds/CattleBreedsPanel" class="text-decoration-none">
+            <div class="card shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">📝 Blog</h3>
+                    <p class="text-muted">
+                        Add, edit, and manage cattle breed information
+                    </p>
+                    <a href="@Url.Action("Index", "BlogPosts")">
+                        <span class="btn btn-success mt-2">
+                             Manage Blog Posts
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- Products -->
+    <div class="col-md-6 mb-4">
+        <a href="/Products/Index" class="text-decoration-none">
+            <div class="card shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">📦 Products</h3>
+                    <p class="text-muted">
+                        Add, edit, and manage all product details
+                    </p>
+                    <span class="btn btn-primary mt-2">
+                        Manage Products
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Cattle Breeds -->
+    <div class="col-md-6 mb-4">
+        <a href="/CattleBreeds/CattleBreedsPanel" class="text-decoration-none">
+            <div class="card shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">🐂 Cattle Breeds</h3>
+                    <p class="text-muted">
+                        Add, edit, and manage cattle breed information
+                    </p>
+                    <span class="btn btn-success mt-2">
+                        Manage Cattle Breeds
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!---Events---->
+    <div class="col-md-6 mb-4">
+        <a href="/CattleBreeds/CattleBreedsPanel" class="text-decoration-none">
+            <div class="card shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">🗓️ Events</h3>
+                    <p class="text-muted">
+                        Add, edit, and manage cattle breed information
+                    </p>
+                    <a href="@Url.Action("Index", "Events")">
+                        <span class="btn btn-success mt-2">
+                            Manage Events
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+
+

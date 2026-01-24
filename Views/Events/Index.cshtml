@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Jallikattu.Models.EventsTable>
+
+@{
+    ViewBag.Title = "Events Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Events</h2>
+
+        <div class="d-flex align-items-center gap-3">
+            <select id="statusFilter" class="form-select" style="width:200px;">
+                <option value="" @(ViewBag.SelectedStatus == null ? "selected" : "")>
+                    All Events
+                </option>
+                <option value="0" @(ViewBag.SelectedStatus?.ToString() == "0" ? "selected" : "")>
+                    Pending Events
+                </option>
+                <option value="1" @(ViewBag.SelectedStatus?.ToString() == "1" ? "selected" : "")>
+                    Approved Events
+                </option>
+            </select>
+
+
+            <a href="@Url.Action("Create")" class="btn btn-success">
+                + Add New Event
+            </a>
+        </div>
+    </div>
+
+
+
+    <!-- Events Table -->
+    <!-- Events Table -->
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+
+            <table class="table table-striped table-hover mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+
+                        @* Extra columns only for Pending events *@
+                        @if (ViewBag.SelectedStatus != null && ViewBag.SelectedStatus == 0)
+                        {
+                            <th>User Name</th>
+                            <th>Mobile No</th>
+                        }
+
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.Status == 0 ? "table-warning" : "")">
+
+                            <!-- Event Name -->
+                            <td class="fw-bold">
+                                @item.EventName
+                            </td>
+
+                            <!-- Event Date -->
+                            <td>
+                                @item.EventDate.ToString("dd MMM yyyy")
+                            </td>
+
+                            <!-- Location -->
+                            <td>
+                                @item.EventLocation
+                            </td>
+
+                            @* Extra details only for Pending *@
+                            @if (ViewBag.SelectedStatus != null && ViewBag.SelectedStatus == 0)
+                            {
+                                <td>
+                                    @item.UserName
+                                </td>
+
+                                <td>
+                                    <a href="tel:@item.MobileNo">@item.MobileNo</a>
+                                </td>
+                            }
+
+                            <!-- Actions -->
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.EventID })"
+                                   class="btn btn-sm btn-primary">
+                                    Edit
+                                </a>
+
+                                <a href="@Url.Action("Index", "Home")#View-Calendar"
+                                   class="btn btn-sm btn-info text-white">
+                                    View
+                                </a>
+
+                                <a href="@Url.Action("Delete", new { id = item.EventID })"
+                                   class="btn btn-sm btn-danger">
+                                    Delete
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    document.getElementById("statusFilter").addEventListener("change", function () {
+
+        var selectedStatus = this.value;
+        var baseUrl = '@Url.Action("Index")';
+
+        if (selectedStatus !== "") {
+            window.location.href = baseUrl + "?status=" + selectedStatus;
+        } else {
+            window.location.href = baseUrl;
+        }
+
+    });
+</script>
+
+

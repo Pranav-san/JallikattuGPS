@@ -1,0 +1,490 @@
+﻿@model IEnumerable<Jallikattu.Models.CattleBreedsTable>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<main>
+
+
+
+
+
+
+    <div id="BDContainer" class="container">
+
+        <h2 class="pt-3">History of Jallikattu</h2>
+
+        <div class="row align-items-start">
+
+            <div class="col-12 col-md-5">
+
+                <img id="HISTORYIMG1" class="~/img-fluid rounded w-100" src="Images/History Of Jallikattu/History_3.jpg" alt="">
+
+            </div>
+
+            <div class="col-12 col-md-7">
+
+                <p>
+                    Jallikattu is an ancient Tamil bull-taming tradition with roots tracing back to
+                    the Tamil Classical Period
+                    (400–100 BCE). It originated as a cultural ritual among the Ayar pastoral community who lived in the
+                    Mullai
+                    (forest-pastoral) region of ancient Tamil Nadu. The sport was deeply tied to agrarian life, seasonal
+                    celebrations, and rites of bravery. Over time, it evolved into a public display of courage, with
+                    prize rewards introduced to encourage participation and honor skilled bull-tamers.
+                    Archaeological evidence suggests that Jallikattu-like practices existed even earlier. A famous Indus
+                    Valley Civilization seal preserved in the National Museum, New Delhi, depicts a man attempting to embrace a
+                    charging bull — believed to be an early form of Eru Thazhuvuthal, the ancient predecessor of
+                    Jallikattu. Additionally, a 1,500-year-old white kaolin cave painting near Madurai shows a lone man trying to
+                    control a bull, reinforcing the sport’s long-standing presence in Tamil culture.Another fascinating discovery is an ancient tin coin,
+                    estimated to belong to the 3rd or 4th century BCE, which appears to illustrate a bull-taming scene.
+                    Because tin was then sourced primarily from Southeast Asia,
+                    the coin also hints at early trade networks connected to Tamil regions and the spread of cultural
+                    symbols such as Jallikattu.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="row gy-4">
+
+            <div class="row gy-4">
+                <h2>Types of Jallikattu</h2>
+
+                @foreach (var type in ViewBag.JallikattuTypes)
+                {
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100">
+
+                            <img class="card-img-fixed"
+                                 src="@type.ImageURL"
+                                 alt="@type.BlogTitle" />
+
+                            <div class="card-body d-flex flex-column">
+
+                                <h3 class="card-title">@type.BlogTitle</h3>
+
+                                <p class="card-text">
+                                    @if (!string.IsNullOrEmpty(type.BlogContent))
+                                    {
+                                        @Html.Raw(
+                                            type.BlogContent.Length > 150
+                                            ? type.BlogContent.Substring(0, 150) + "..."
+                                            : type.BlogContent
+                                        )
+                                    }
+                                </p>
+
+                                <div class="mt-auto">
+                                    <a href="@Url.Action("PostDetails", "BlogInfo", new { id = type.PostID })" class="btn btn-primary">
+                                        Read more
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+
+
+
+
+        @*Cattle Breeds*@
+
+
+        <div class="row mt-4 gy-4">
+
+            <h2>Cattle Breeds</h2>
+
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4">
+
+                    <div class="card h-100">
+
+                        <img class="card-img-fixed" src="@item.ImageURL" alt="">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <h3 class="card-title">@item.BreedName</h3>
+
+                            <p class="card-text">
+
+                                @if (item.Description != null)
+                                {
+                                    @item.Description.Substring(0, Math.Min(120, item.Description.Length))@:
+                                }
+
+                            </p>
+
+                            <div class="mt-auto">
+
+                                <a href="@Url.Action("CattleBreeds", "Home")" class="btn btn-primary ">See more</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+        <div class="row mt-4 gy-4">
+
+            <h2>Our Products</h2>
+
+
+            @foreach (var product in ViewBag.products)
+            {
+                <div class="col-12 col-sm-6 col-md-4">
+
+                    <div class="card h-100">
+
+                        <img class="card-img-fixed" src="@product.ImageURL" alt="">
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">@product.ProductName</h3>
+
+                            <p class="card-text">
+
+                                @if (product.Description != null)
+                                {
+                                    @product.Description.Substring(0, Math.Min(120, product.Description.Length))@:
+                                }
+
+                            </p>
+
+                            <div class="mt-auto">
+
+                                <a href="@Url.Action("Products", "Home")" class="btn btn-primary ">View more</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+
+        @*//Blogs*@
+
+
+    <div id="Blog" class="row mt-4 gy-4">
+
+        <h2>Blog</h2>
+
+        @foreach (var type in ViewBag.BlogPosts)
+        {
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="card h-100">
+
+                    <img class="card-img-fixed"
+                         src="@type.ImageURL"
+                         alt="@type.BlogTitle" />
+
+                    <div class="card-body d-flex flex-column">
+
+                        <h3 class="card-title">@type.BlogTitle</h3>
+
+                        <p> @type.CreatedAt.ToString("dd MMM yyyy | hh:mm tt")</p>
+
+
+
+                        <p class="card-text">
+                            @if (!string.IsNullOrEmpty(type.BlogContent))
+                            {
+                                @Html.Raw(
+                                    type.BlogContent.Length > 150
+                                    ? type.BlogContent.Substring(0, 150) + "..."
+                                    : type.BlogContent
+                                )
+                            }
+                        </p>
+
+                        <div class="mt-auto">
+                            <a href="@Url.Action("PostDetails", "BlogInfo", new { id = type.PostID })" class="btn btn-primary">
+                                Read more
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+
+
+
+            @*Events*@
+
+            <div id="View-Calendar" class="container mt-4">
+
+                <h2>Upcoming Jallikattu Events</h2>
+                <div class="calendar-header d-flex justify-content-between align-items-center mb-4">
+
+                </div>
+
+                <div id="calendar">
+
+
+                </div>
+            </div>
+   
+
+
+            <div class="modal fade" id="eventViewModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModalTitle"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p><strong>Date:</strong> <span id="eventModalDate"></span></p>
+                            <p><strong>Location:</strong> <span id="eventModalLocation"></span></p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                Ok
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    <style>
+
+        .card-img-fixed {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+        .fc {
+            font-family: Arial;
+        }
+            /* Remove link styling from calendar */
+            .fc a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+
+        /* Day names (SUN, MON, etc.) */
+        .fc-col-header-cell-cushion {
+            text-decoration: none !important;
+            font-weight: 600;
+            color: #2f3e34;
+            font-family: Arial;
+        }
+
+        /* Date numbers */
+        .fc-daygrid-day-number {
+            text-decoration: none !important;
+            color: #333;
+            font-weight: 700;
+            font-family: Arial;
+        }
+
+        .fc .fc-button {
+            background-color: #f1f1f1;
+            border: 1px solid #918e8e;
+            color: #646464;
+            font-family: Arial;
+            text-transform: capitalize;
+        }
+
+            .fc .fc-button:hover {
+                background-color: darkgrey;
+                color: #333;
+            }
+
+        /* Event styling */
+        .fc-daygrid-event {
+            background-color: #1b9e77;
+            border: none;
+            font-size: 0.85rem;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Prevent long text overflow */
+        .fc-event-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Clickable hint */
+        .fc-event {
+            cursor: pointer;
+        }
+
+        @@media (max-width: 768px) {
+
+            .fc-header-toolbar {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                row-gap: 8px;
+            }
+            /* Month / List (top-left) */
+            .fc-toolbar-chunk:first-child {
+                width: 100%;
+                justify-content: flex-start;
+                gap: 6px;
+            }
+            /* Month title stays centered */
+            .fc-toolbar-title {
+                width: 100%;
+                text-align: left; /* 👈 key change */
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin: 2px 0;
+            }
+            /* Right chunk moves fully LEFT */
+            .fc-toolbar-chunk:last-child {
+                width: 100%;
+                justify-content: flex-start; /* 👈 THIS fixes the green gap */
+                gap: 6px;
+            }
+            /* Buttons sizing */
+            .fc .fc-button {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+                border-radius: 6px;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                height: 'auto',
+                fixedWeekCount: false,
+
+                headerToolbar: {
+                    left: 'dayGridMonth,listMonth',
+                    center: 'title',
+                    right: 'addEvent today prev,next'
+                },
+
+                allDayText: '',
+
+                customButtons: {
+                    addEvent: {
+                        text: 'Add Event',
+                        click: function () {
+                            window.location.href = '/Home/AddEvent';
+                        }
+                    }
+                },
+
+                dayMaxEvents: 2,          // "+ more" appears automatically
+                eventDisplay: 'block',
+
+                events: {
+                    url: '/Home/GetEvents',
+                    method: 'GET'
+                },
+
+                eventClick: function (info) {
+                    info.jsEvent.preventDefault();
+
+                    document.getElementById('eventModalTitle').innerText =
+                        info.event.title;
+
+                    document.getElementById('eventModalLocation').innerText =
+                        info.event.extendedProps.location;
+
+                    document.getElementById('eventModalDate').innerText =
+                        info.event.start.toDateString();
+
+                    new bootstrap.Modal(
+                        document.getElementById('eventViewModal')
+                    ).show();
+                }
+            });
+
+            calendar.render();
+
+            function adjustCalendarForScreen() {
+                if (window.innerWidth < 768) {
+                    calendar.changeView('listMonth');
+                } else {
+                    calendar.changeView('dayGridMonth');
+                }
+            }
+
+            adjustCalendarForScreen();
+            window.addEventListener('resize', adjustCalendarForScreen);
+
+            //// Mobile auto-switch
+            //if (window.innerWidth < 768) {
+            //    calendar.changeView('listMonth');
+            //}
+        });
+    </script>
+
+
+
+
+
+
+    @if (TempData["EventSubmitted"] != null)
+    {
+        <script>
+        window.onload = function () {
+            alert("@TempData["EventSubmitted"]");
+        };
+        </script>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "CattleTrackingSystem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">GPS Tracking System</h1>
+        <p class="text-muted">
+            Monitor, protect, and track in real time using our smart GPS solution.
+        </p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="row g-4 align-items-center">
+
+        <!-- LEFT : INFO -->
+        <div class="col-lg-6">
+
+            <h4 class="fw-bold mb-3">How it works</h4>
+
+            <ul class="list-unstyled">
+                <li class="mb-2">✔ Real-time GPS location tracking</li>
+                <li class="mb-2">✔ Helps prevent cattle theft</li>
+                <li class="mb-2">✔ Ideal for Jallikattu & free-grazing cattle</li>
+                <li class="mb-2">✔ Portable & weather-resistant tracker</li>
+            </ul>
+
+            <p class="text-muted mt-3">
+                Our GPS tracking system allows cattle owners to monitor the live
+                location of their cattle using a compact tracking device.
+                The system is designed for reliability, safety, and ease of use.
+            </p>
+
+            <div class="mt-4 d-flex gap-3">
+                <a href="@Url.Action("Products", "Home")"
+                   class="btn btn-success px-4">
+                    View Tracker Devices
+                </a>
+
+                <a href="@Url.Action("Contact", "Home")"
+                   class="btn btn-outline-secondary px-4">
+                    Contact Support
+                </a>
+            </div>
+
+        </div>
+
+        <!-- RIGHT : VISUAL / PLACEHOLDER -->
+        <div class="col-lg-6 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">Tracking Dashboard</h5>
+
+                    <p class="text-muted">
+                        Live tracking dashboard integration will appear here.
+                    </p>
+
+                    <div class="border rounded p-4 text-muted">
+                        <strong>Coming Soon</strong><br />
+                        Real-time map view & alerts
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

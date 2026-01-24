@@ -1,0 +1,142 @@
+﻿@model Jallikattu.Models.BlogPostsTable
+
+@{
+    ViewBag.Title = "Edit Blog Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Edit Blog Post</h4>
+                </div>
+
+                <div class="card-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.PostID)
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+                        <!-- Image URL -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.ImageURL, new { @class = "form-label fw-bold" })
+                            @Html.TextBoxFor(m => m.ImageURL, new
+                            {
+                                @class = "form-control",
+                                id = "imageUrlInput",
+                                placeholder = "https://image-url.jpg"
+                            })
+                            @Html.ValidationMessageFor(m => m.ImageURL, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div class="mb-4 text-center">
+                            <img id="imagePreview"
+                                 src="@Model.ImageURL"
+                                 alt="Image Preview"
+                                 class="img-fluid rounded shadow-sm"
+                                 style="max-height:220px;
+                                        @(string.IsNullOrEmpty(Model.ImageURL) ? "display:none;" : "display:block;")" />
+                        </div>
+
+                        <!-- Blog Title -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.BlogTitle, new { @class = "form-label fw-bold" })
+                            @Html.TextBoxFor(m => m.BlogTitle, new
+                            {
+                                @class = "form-control",
+                                placeholder = "Enter blog title"
+                            })
+                            @Html.ValidationMessageFor(m => m.BlogTitle, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.Category, new { @class = "form-label fw-bold" })
+                            @Html.DropDownListFor(
+                                m => m.Category,
+                                new SelectList(new[]
+                                {
+                                    new { Value = "Blog", Text = "Blog Post" },
+                                    new { Value = "JallikattuType", Text = "Jallikattu Type" }
+                                }, "Value", "Text", Model.Category),
+                                "-- Select Category --",
+                                new { @class = "form-select" }
+                            )
+                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <!-- Blog Content -->
+                        <div class="mb-4">
+                            @Html.LabelFor(m => m.BlogContent, new { @class = "form-label fw-bold" })
+                            @Html.TextAreaFor(m => m.BlogContent, 6, 0,
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Write blog content here..."
+                                })
+                            @Html.ValidationMessageFor(m => m.BlogContent, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Slug -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.Slug, new { @class = "form-label fw-bold" })
+                            @Html.TextBoxFor(m => m.Slug, new
+                            {
+                                @class = "form-control",
+                                id = "slugInput",
+                                placeholder = "vadi-vasal-jallikattu"
+                            })
+                            <small class="text-muted">
+                                Changing the slug will change the page URL
+                            </small>
+                            @Html.ValidationMessageFor(m => m.Slug, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                                ← Back to List
+                            </a>
+
+                            <button type="submit" class="btn btn-primary px-4">
+                                Update Blog
+                            </button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image Preview Script -->
+<script>
+    const imageInput = document.getElementById("imageUrlInput");
+    const imagePreview = document.getElementById("imagePreview");
+
+    imageInput.addEventListener("input", function () {
+        const url = this.value.trim();
+
+        if (url) {
+            imagePreview.src = url;
+            imagePreview.style.display = "block";
+
+            imagePreview.onerror = function () {
+                imagePreview.style.display = "none";
+            };
+        } else {
+            imagePreview.style.display = "none";
+        }
+    });
+</script>

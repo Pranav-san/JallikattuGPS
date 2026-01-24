@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A16EB70-1DEB-4047-BDD5-BE6497BD626F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jallikattu</RootNamespace>
+    <AssemblyName>Jallikattu</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44360</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BlogInfoController.cs" />
+    <Compile Include="Controllers\BlogPostsController.cs" />
+    <Compile Include="Controllers\CattleBreedsController.cs" />
+    <Compile Include="Controllers\CattleInfoController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductInfoController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlogPostsTable.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CattleBreedsTable.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventsTable.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JallikattuGPSEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JallikattuGPSEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JallikattuGPSEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JallikattuGPSEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JallikattuGPSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserTable.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\bootstrap_Flatly.css" />
+    <Content Include="Content\bootstrap_Lumen.css" />
+    <Content Include="Content\bootstrap_Minty.css" />
+    <Content Include="Content\bootstrap_Zephyr.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\Bulls &amp; cows\Alambadi.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Alambadi_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Amrit Mahal_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Amrit Mahal_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Bachaur_cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Badri_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Badri_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Bargur_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Bargur_Bull_2.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Bargur_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Belahi_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\binjharpuri_bull.png" />
+    <Content Include="Images\Bulls &amp; cows\binjharpuri_cow.png" />
+    <Content Include="Images\Bulls &amp; cows\Cholistani_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Dangi_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Deoni-Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\frieswal_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Gangatiri_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Gangatiri_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Gaolao_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Gaolao_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\ghumusari_cow.png" />
+    <Content Include="Images\Bulls &amp; cows\Gir_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Gir_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Hallikaru_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Hariana_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Hariana_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Hariana_Cow_2.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Himachali_Pahari_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Himachali_Pahari_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Javari_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Javari_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kangeyam_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kangeyam_Bull_2.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kangeyam_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kankrej_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Kankrej_cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Kasaragod_Dwarf_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kasaragod_Dwarf_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kathani_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kathani_cattles.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kenkatha_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Kenkatha_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Kerigar_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\khariar_bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Khilari_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Khilari_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Krishna-cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Krishna_Valley_bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Lakhimi_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Lakhimi_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Malenadu_Gidda_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Malenadu_Gidda_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Malvi_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Malvi_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Masilum_cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Mewati Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\mewati_bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\mewati_cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\motu_bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\motu_cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Nagori_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Nagori_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\nattu kuttai.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Nimari_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Nimari_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Ongole_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Pabna.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Poda_Thurpu_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Poda_Thurpu_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Ponwar_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Ponwar_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Pulikulam_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Punganur_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Punganur_cow.png" />
+    <Content Include="Images\Bulls &amp; cows\Purnea_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Purnea_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Rathi_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Rathi_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Red_Kandhari_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Red_Kandhari_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Sahiwala_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Sanchori.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Shweta_Kapila_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Shweta_Kapila_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\siri_bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\siri_cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Tharparkar_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Tharparkar_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Thutho_Bull.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Thutho_Cow.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Umblachery_Bull.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Umblachery_Bull_2.jpg" />
+    <Content Include="Images\Bulls &amp; cows\Umblachery_Cow.JPG" />
+    <Content Include="Images\Bulls &amp; cows\Vechur_Cow.jpg" />
+    <Content Include="Images\History Of Jallikattu\History_2.jpg" />
+    <Content Include="Images\History Of Jallikattu\History_3.jpg" />
+    <Content Include="Images\History Of Jallikattu\History_4.jpg" />
+    <Content Include="Images\icon\Icon_1.png" />
+    <Content Include="Images\icon\Jallikattu_Icon.jpg" />
+    <Content Include="Images\icon\LocationIcon.png" />
+    <Content Include="Images\icon\Profile_icon.png" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu-2.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\jallikattu_.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\jallikattu_2025_Alanganallur.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_2025_Alanganallur_2.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_2025_Palamedu, Madurai district.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_2025_Thachankurichi %28Gandarvakottai taluk%29, Pudukkottai district.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_3.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_4.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_5.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikattu_6.png" />
+    <Content Include="Images\Jallikattu_Sport_Images\Jallikkattu_2025_Avaniyapuram, Madurai district.jpeg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Palamedu_Jallikattu.jpg" />
+    <Content Include="Images\Jallikattu_Sport_Images\Popular_Jallikattu_venues.jpg" />
+    <Content Include="Images\Jallikattu_Types\Eruthu Vidum Vizha.gif" />
+    <Content Include="Images\Jallikattu_Types\Eruthu Vidum Vizha_2.jpg" />
+    <Content Include="Images\Jallikattu_Types\Eruthu Vidum Vizha_3.jpg" />
+    <Content Include="Images\Jallikattu_Types\History_1.JPG" />
+    <Content Include="Images\Jallikattu_Types\History_2.jpg" />
+    <Content Include="Images\Jallikattu_Types\History_3.jpg" />
+    <Content Include="Images\Jallikattu_Types\History_4.jpg" />
+    <Content Include="Images\Jallikattu_Types\Manju Virattu .jpg" />
+    <Content Include="Images\Jallikattu_Types\Manju Virattu_2.jpg" />
+    <Content Include="Images\Jallikattu_Types\Manju Virattu_3.jpg" />
+    <Content Include="Images\Jallikattu_Types\Oor Maadu Jallikattu.jpg" />
+    <Content Include="Images\Jallikattu_Types\Oor Maadu Jallikattu_2.jpg" />
+    <Content Include="Images\Jallikattu_Types\Pirithu Manjuvirattu.gif" />
+    <Content Include="Images\Jallikattu_Types\Rekla Race.jpg" />
+    <Content Include="Images\Jallikattu_Types\Rekla Race_2.jpg" />
+    <Content Include="Images\Jallikattu_Types\Rekla Race_3.gif" />
+    <Content Include="Images\Jallikattu_Types\Vadam Jallikattu.jpeg" />
+    <Content Include="Images\Jallikattu_Types\Vadam Jallikattu_2.jpeg" />
+    <Content Include="Images\Jallikattu_Types\Vadam Jallikattu_3.jpeg" />
+    <Content Include="Images\Jallikattu_Types\Vadi Vasal Jallikattu.jpeg" />
+    <Content Include="Images\Jallikattu_Types\Vadi Vasal Jallikattu_2.gif" />
+    <Content Include="Images\Jallikattu_Types\Vadi Vasal Jallikattu_3.jpg" />
+    <Content Include="Images\Jallikattu_Types\Vaeli Jallikattu.jpg" />
+    <Content Include="Models\JallikattuGPSEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JallikattuGPSEntities.edmx</DependentUpon>
+      <LastGenOutput>JallikattuGPSEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\JallikattuGPSEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JallikattuGPSEntities.edmx</DependentUpon>
+      <LastGenOutput>JallikattuGPSEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\Bulls &amp; cows\Pulikulam_Bull.webp" />
+    <Content Include="Images\Bulls &amp; cows\Sanchori.webp" />
+    <Content Include="Images\Jallikattu_Types\1642150412-0081.webp" />
+    <EntityDeploy Include="Models\JallikattuGPSEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JallikattuGPSEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\JallikattuGPSEntities.edmx.diagram">
+      <DependentUpon>JallikattuGPSEntities.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\jallikattu-gps-demo - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Auth\Login.cshtml" />
+    <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\BlogInfo\PostDetails.cshtml" />
+    <Content Include="Views\BlogPosts\Create.cshtml" />
+    <Content Include="Views\BlogPosts\Delete.cshtml" />
+    <Content Include="Views\BlogPosts\Details.cshtml" />
+    <Content Include="Views\BlogPosts\Edit.cshtml" />
+    <Content Include="Views\BlogPosts\Index.cshtml" />
+    <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Blog\Delete.cshtml" />
+    <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Blog\Edit.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\CattleBreeds\CattleBreedsPanel.cshtml" />
+    <Content Include="Views\CattleBreeds\Create.cshtml" />
+    <Content Include="Views\CattleBreeds\Delete.cshtml" />
+    <Content Include="Views\CattleBreeds\Details.cshtml" />
+    <Content Include="Views\CattleBreeds\Edit.cshtml" />
+    <Content Include="Views\CattleBreeds\Index.cshtml" />
+    <Content Include="Views\CattleInfo\CattleInfo.cshtml" />
+    <Content Include="Views\CattleInfo\Details.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\AddEvent.cshtml" />
+    <Content Include="Views\Home\AdminDashBoard.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\CattleBreeds.cshtml" />
+    <Content Include="Views\Home\CattleTrackingSystem.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Home\UserDashBoard.cshtml" />
+    <Content Include="Views\ProductInfo\ProductDetails.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_CattleBreeds.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63153</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44360/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,50 @@
+﻿@model Jallikattu.Models.CattleBreedsTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--CattleInfo-->
+<div id="Cattle-info-Main-Container" class="container">
+
+    <div class="row">
+        <div class="col-12 col-md-5 mb-4">
+            <img id="Cattle-Info-IMG" class="img-fluid rounded w-100" src="@Url.Content(Model.ImageURL)" alt="">
+        </div>
+        <div class="col-12 col-md-7 ">
+            <h1 id="Breed-name">@Model.BreedName</h1>
+
+            <div id="Basic-info">
+
+                <p><strong>Utility:</strong> @Model.Utility</p>
+                <p><strong>Origin:</strong> @Model.Origin</p>
+                <p>
+                    <strong>Distribution:</strong> @Model.Distribution
+                </p>
+
+            </div>
+
+
+
+        </div>
+
+        <hr>
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+
+
+                <h4>About:</h4>
+                <p>
+                    @Model.Description
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

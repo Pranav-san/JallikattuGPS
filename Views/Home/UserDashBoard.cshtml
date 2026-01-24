@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "UserDashBoard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+
+    <!-- PAGE HEADER -->
+    <div class="mb-4">
+        <h2 class="fw-bold">
+            Welcome, @Session["UserName"] 👋
+        </h2>
+        <p class="text-muted">
+            This is your personal dashboard. Manage your account and view your activity here.
+        </p>
+    </div>
+
+    <!-- DASHBOARD CARDS -->
+    <div class="row g-4">
+
+        <!-- PROFILE CARD -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-2">👤 Profile</h5>
+                    <p class="text-muted small">
+                        View and manage your account details.
+                    </p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        View Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCTS CARD -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-2">📦 Products</h5>
+                    <p class="text-muted small">
+                        Browse available GPS products and accessories.
+                    </p>
+                    <a href="@Url.Action("Products", "Home")" class="btn btn-outline-success btn-sm">
+                        View Products
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRACKER CARD -->
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-2">📍 GPS Tracking</h5>
+                    <p class="text-muted small">
+                        Track your registered cattle or vehicles in real time.
+                    </p>
+                    <a href="@Url.Action("CattleTrackingSystem", "Home")" class="btn btn-outline-warning btn-sm">
+                        Open Tracker
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+
+</div>
+
+
+
+

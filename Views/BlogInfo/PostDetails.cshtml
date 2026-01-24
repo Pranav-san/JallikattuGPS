@@ -1,0 +1,75 @@
+﻿@model Jallikattu.Models.BlogPostsTable
+
+@{
+    ViewBag.Title = Model.BlogTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Blog hero image */
+    .blog-hero-image {
+        width: 100%;
+        max-height: 420px; /* Desktop control */
+        object-fit: cover; /* Crop cleanly */
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Mobile view – natural height */
+    @@media (max-width: 768px) {
+        .blog-hero-image {
+            max-height: none;
+            object-fit: contain;
+        }
+    }
+
+    .blog-content {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .blog-meta {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+
+    <!-- BLOG TITLE -->
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">
+            @Model.BlogTitle
+        </h1>
+
+        <p class="blog-meta mt-2">
+            Published on
+            @Model.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")
+        </p>
+    </div>
+
+    <!-- BLOG IMAGE -->
+    @if (!string.IsNullOrEmpty(Model.ImageURL))
+    {
+        <div class="mb-4">
+            <img src="@Model.ImageURL"
+                 alt="@Model.BlogTitle"
+                 class="img-fluid blog-hero-image">
+        </div>
+    }
+
+    <!-- BLOG CONTENT -->
+    <div class="blog-content mt-4">
+        @Html.Raw(Model.BlogContent?.Replace("\n", "<br />"))
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div class="mt-5">
+        <a href="@Url.Action("Blog", "Home")"
+           class="btn btn-outline-secondary">
+            ← Back to Blogs
+        </a>
+    </div>
+
+</div>
