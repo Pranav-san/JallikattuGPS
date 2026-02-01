@@ -3,9 +3,6 @@
     ViewBag.Title = "CattleBreeds";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>CattleBreeds</h2>
-
 <main>
 
     <div id="BDContainer" class="container">
@@ -36,7 +33,7 @@
 
                             <div class="mt-auto">
 
-                                <a href="@Url.Action("Details", "CattleInfo", new {id=item.CattleID})" class="btn btn-primary ">Read more</a>
+                                <a href="@Url.Action("CattleDetails", "CattleBreeds", new {id=item.CattleID})" class="btn btn-primary ">Read more</a>
 
                             </div>
 

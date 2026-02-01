@@ -147,6 +147,18 @@ namespace Jallikattu.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET: Products/ProductDetails/5
+        public ActionResult ProductDetails(int id)
+        {
+            using (var db = new JallikattuGPSEntities())
+            {
+                var product = db.Products
+                              .FirstOrDefault(x => x.ProductID == id);
+
+                return View(product);
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -17,8 +17,13 @@ namespace Jallikattu.Controllers
         // GET: CattleBreeds
         public ActionResult Index()
         {
-            return View(db.CattleBreedsTables.ToList());
+            using (var db = new JallikattuGPSEntities())
+            {
+                var breeds = db.CattleBreedsTables.ToList();
+                return View(breeds);
+            }
         }
+
 
         public ActionResult CattleBreedsPanel()
         {
@@ -135,6 +140,25 @@ namespace Jallikattu.Controllers
             db.CattleBreedsTables.Remove(cattleBreedsTable);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: CattleInfo
+        
+
+        public ActionResult CattleInfo()
+        {
+            return View();
+        }
+
+        public ActionResult CattleDetails(int id)
+        {
+            using (var db = new JallikattuGPSEntities())
+            {
+                var breed = db.CattleBreedsTables
+                              .FirstOrDefault(x => x.CattleID == id);
+
+                return View(breed);
+            }
         }
 
         protected override void Dispose(bool disposing)

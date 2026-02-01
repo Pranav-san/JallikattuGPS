@@ -133,6 +133,18 @@ namespace Jallikattu.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: BlogPosts/PostDetails/5
+        public ActionResult PostDetails(int id)
+        {
+            using (var db = new JallikattuGPSEntities())
+            {
+                var post = db.BlogPostsTables.FirstOrDefault(x => x.PostID == id);
+
+                return View(post);
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

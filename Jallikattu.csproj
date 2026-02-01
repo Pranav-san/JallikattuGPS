@@ -130,13 +130,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\BlogInfoController.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CattleBreedsController.cs" />
-    <Compile Include="Controllers\CattleInfoController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductInfoController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -375,7 +372,6 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
-    <Content Include="Views\BlogInfo\PostDetails.cshtml" />
     <Content Include="Views\BlogPosts\Create.cshtml" />
     <Content Include="Views\BlogPosts\Delete.cshtml" />
     <Content Include="Views\BlogPosts\Details.cshtml" />
@@ -392,8 +388,6 @@
     <Content Include="Views\CattleBreeds\Details.cshtml" />
     <Content Include="Views\CattleBreeds\Edit.cshtml" />
     <Content Include="Views\CattleBreeds\Index.cshtml" />
-    <Content Include="Views\CattleInfo\CattleInfo.cshtml" />
-    <Content Include="Views\CattleInfo\Details.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
     <Content Include="Views\Events\Delete.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
@@ -409,7 +403,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\UserDashBoard.cshtml" />
-    <Content Include="Views\ProductInfo\ProductDetails.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
@@ -421,6 +414,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\BlogPosts\PostDetails.cshtml" />
+    <Content Include="Views\CattleBreeds\CattleDetails.cshtml" />
+    <Content Include="Views\Products\ProductDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
