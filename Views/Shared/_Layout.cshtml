@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin
+@using Jallikattu.Models.Identity
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -141,7 +147,7 @@
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog", "Home")">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")#View-Calendar">Events</a></li>
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Products", "Home")">GPS Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Products", "Home")">GPS Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a></li>
                 </ul>
 
@@ -150,16 +156,31 @@
                     <input id="SearchBar" class="form-control" placeholder="Search Kangayam, jall..." />
                 </form>
 
+
+                @{
+                    string displayName = "";
+
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        var userManager = HttpContext.Current.GetOwinContext().GetUserManager<UserManager<ApplicationUser>>();
+
+                        var userId = User.Identity.GetUserId();
+                        var user = userManager.FindById(userId);
+
+                        displayName = user?.FullName ?? User.Identity.Name;
+                    }
+                }
+
                 <!-- AUTH SECTION -->
                 <div class="d-flex align-items-center gap-2">
 
-                    @if (Session["UserID"] == null)
+                    @if (!User.Identity.IsAuthenticated)
                     {
-                        <a href="@Url.Action("Login", "Auth")" class="btn btn-login btn-sm">
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-login btn-sm">
                             Login
                         </a>
 
-                        <a href="@Url.Action("Register", "Auth")" class="btn btn-register btn-sm">
+                        <a href="@Url.Action("Register", "Account")" class="btn btn-register btn-sm">
                             Register
                         </a>
                     }
@@ -167,25 +188,34 @@
                     {
 
 
+
                         <span class="text-muted small me-2">
-                            @if (Session["Role"].ToString() == "Admin")
+                            @if (User.IsInRole("Admin"))
                             {
-                                <a style="text-decoration:none" href="@Url.Action("AdminDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @Session["UserName"]</a>
+                                <a style="text-decoration:none" href="@Url.Action("AdminDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> displayName</a>
 
                             }
                             else
                             {
-                                <a style="text-decoration:none" href="@Url.Action("UserDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @Session["UserName"]</a>
+                                <a style="text-decoration:none" href="@Url.Action("UserDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @displayName</a>
 
                             }
 
 
                         </span>
 
-                        <a href="@Url.Action("Logout", "Auth")"
-                           class="btn btn-outline-danger btn-sm">
-                            Logout
-                        </a>
+                        using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "d-inline" }))
+                        {
+
+
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                Logout
+                            </button>
+
+
+                        }
+
+
                     }
 
                 </div>
@@ -233,7 +263,7 @@
                         </li>
                         <li>
                             <a href="@Url.Action("Contact","Home")"
-                            class="text-white text-decoration-none">Contact</a>
+                               class="text-white text-decoration-none">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -242,14 +272,13 @@
                 <div class="col-md-4 mb-4">
                     <h6 class="fw-bold">Contact</h6>
                     <p class="small mb-1">
-                        Rapsys Info Tech<br />
                         Chennai, Tamil Nadu
                     </p>
                     <p class="small mb-1">
-                        📧 kathir@rapsys.in
+                        📧 pranavsan28@gmail.com
                     </p>
                     <p class="small mb-0">
-                        📞 +91 96264 51919
+                        📞 +91 76038 19251
                     </p>
                 </div>
 
@@ -260,7 +289,7 @@
             <!-- BOTTOM BAR -->
             <div class="text-center small">
                 <p class="mb-1">
-                    &copy; @DateTime.Now.Year - Rapsys Info Tech. All Rights Reserved.
+                    &copy; @DateTime.Now.Year - All Rights Reserved.
                 </p>
                 <a href="#" class="text-white text-decoration-none me-3">
                     Privacy Policy
