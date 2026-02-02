@@ -17,11 +17,9 @@ namespace Jallikattu.Controllers
         // GET: CattleBreeds
         public ActionResult Index()
         {
-            using (var db = new JallikattuGPSEntities())
-            {
-                var breeds = db.CattleBreedsTables.ToList();
-                return View(breeds);
-            }
+            var breeds = db.CattleBreedsTables.ToList();
+            return View(breeds);
+            
         }
 
 
@@ -52,8 +50,6 @@ namespace Jallikattu.Controllers
         }
 
         // POST: CattleBreeds/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CattleID,BreedName,Utility,Origin,Distribution,Description,ImageURL,Createdby,CreatedAt,UpdatedBy,UpdatedAt")] CattleBreedsTable cattleBreedsTable)
@@ -86,8 +82,6 @@ namespace Jallikattu.Controllers
         }
 
         // POST: CattleBreeds/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CattleBreedsTable cattleBreed)

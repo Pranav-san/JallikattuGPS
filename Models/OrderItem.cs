@@ -12,13 +12,15 @@ namespace Jallikattu.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserTable
+    public partial class OrderItem
     {
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-        public System.DateTime CreatedAt { get; set; }
+        public int OrderItemID { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+    
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

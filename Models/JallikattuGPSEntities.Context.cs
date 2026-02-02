@@ -18,6 +18,7 @@ namespace Jallikattu.Models
         public JallikattuGPSEntities()
             : base("name=JallikattuGPSEntities")
         {
+
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,6 +30,7 @@ namespace Jallikattu.Models
         public virtual DbSet<CattleBreedsTable> CattleBreedsTables { get; set; }
         public virtual DbSet<EventsTable> EventsTables { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<UserTable> UserTables { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
     }
 }

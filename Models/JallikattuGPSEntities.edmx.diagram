@@ -9,7 +9,10 @@
         <EntityTypeShape EntityType="Model.CattleBreedsTable" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.EventsTable" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.UserTable" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="5.375" PointY="5" />
+        <EntityTypeShape EntityType="Model.OrderItem" Width="1.5" PointX="7.625" PointY="6.125" />
+        <AssociationConnector Association="Model.FK_OrderItems_Orders" />
+        <AssociationConnector Association="Model.FK_OrderItems_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

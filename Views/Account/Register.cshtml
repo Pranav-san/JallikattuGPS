@@ -95,7 +95,7 @@
 
                 <div class="mb-3">
                     @Html.LabelFor(m => m.FullName, new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Name" })
                     @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger small" })
                 </div>
 

@@ -43,8 +43,6 @@ namespace Jallikattu.Controllers
         }
 
         // POST: Events/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EventID,EventName,EventDate,EventLocation,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt")] EventsTable eventsTable)
@@ -95,8 +93,6 @@ namespace Jallikattu.Controllers
         }
 
         // POST: Events/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EventsTable model, string action)

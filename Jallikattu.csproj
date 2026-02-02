@@ -157,14 +157,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CattleBreedsController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Data\BaseRepository\CattleService.cs" />
+    <Compile Include="Data\BaseRepository\EntityBaseRepository.cs" />
+    <Compile Include="Data\BaseRepository\ICattleBreedService.cs" />
+    <Compile Include="Data\BaseRepository\IEntityBase.cs" />
+    <Compile Include="Data\BaseRepository\IEntityBaseRepository.cs" />
     <Compile Include="Data\ViewModels\LoginVM.cs" />
     <Compile Include="Data\ViewModels\RegisterVM.cs" />
+    <Compile Include="Data\ViewModels\SearchResultsVM.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,6 +187,7 @@
     <Compile Include="Models\BlogPostsTable.cs">
       <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\CattleBreedsTable.cs">
       <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
     </Compile>
@@ -203,10 +211,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JallikattuGPSEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
+    <Compile Include="Models\Order.cs">
       <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserTable.cs">
+    <Compile Include="Models\OrderItem.cs">
+      <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
       <DependentUpon>JallikattuGPSEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -413,8 +424,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\BlogPosts\Create.cshtml" />
     <Content Include="Views\BlogPosts\Delete.cshtml" />
     <Content Include="Views\BlogPosts\Details.cshtml" />
@@ -462,6 +471,10 @@
     <Content Include="Views\Products\ProductDetails.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Order\_CartSummary.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Checkout.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

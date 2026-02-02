@@ -188,17 +188,22 @@
                         </div>
 
                         <!-- Buttons -->
-                        <div class="d-flex justify-content-between">
-                            <a href="@Url.Action("Index")"
-                               class="btn btn-outline-secondary">
-                                ← Back to List
-                            </a>
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index")"
+                       class="btn btn-outline-secondary">
+                        ← Back to List
+                    </a>
 
-                            <button type="submit"
-                                    class="btn btn-primary px-4">
-                                Update Product
-                            </button>
-                        </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                       <button type="submit"
+                               class="btn btn-primary px-4">
+                           Update Product
+                       </button>
+                    }
+
+                    
+                </div>
                     }
 
                 </div>

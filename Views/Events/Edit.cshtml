@@ -58,29 +58,34 @@
                         ← Back to List
                     </a>
 
-                    <!-- Toggle Status -->
-                    @if (Model.Status == 1)
+                    @if (User.IsInRole("Admin"))
                     {
-                        <button type="submit"
-                                name="action"
-                                value="deactivate"
-                                class="btn btn-warning">
-                            Deactivate
+                        <!-- Toggle Status -->
+                        if (Model.Status == 1)
+                        {
+                            <button type="submit"
+                                    name="action"
+                                    value="deactivate"
+                                    class="btn btn-warning">
+                                Deactivate
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit"
+                                    name="action"
+                                    value="activate"
+                                    class="btn btn-success">
+                                Activate
+                            </button>
+                        }
+
+                        <button type="submit" class="btn btn-primary px-4">
+                            Update Event
                         </button>
-                    }
-                    else
-                    {
-                        <button type="submit"
-                                name="action"
-                                value="activate"
-                                class="btn btn-success">
-                            Activate
-                        </button>
+
                     }
 
-                    <button type="submit" class="btn btn-primary px-4">
-                        Update Event
-                    </button>
                 </div>
                     }
 

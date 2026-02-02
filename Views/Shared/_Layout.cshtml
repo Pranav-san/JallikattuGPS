@@ -18,6 +18,8 @@
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+   
+
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -70,11 +72,16 @@
         #SearchBar {
             min-width: 220px;
             max-width: 280px;
-            border-radius: 20px;
+            border-radius: 5px;
+            border-start-end-radius: 1px;
+            border-end-end-radius:1px;
             padding-left: 14px;
             border: 1px solid #ccc;
         }
-
+        #SearchBtn {
+            border-start-start-radius: 1px;
+            border-end-start-radius:1px;
+        }
         /* AUTH BUTTONS */
         .btn-login {
             color: #555;
@@ -149,12 +156,20 @@
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")#View-Calendar">Events</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Products", "Home")">GPS Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    @Html.Action("CartSummary", "Order")
                 </ul>
 
 
-                <form class="d-flex mb-3 mb-lg-0 me-lg-3">
-                    <input id="SearchBar" class="form-control" placeholder="Search Kangayam, jall..." />
+                <form class="d-flex mb-3 mb-lg-0 me-lg-3" method="get" action="@Url.Action("Index", "Search")">
+                    <input id="SearchBar" name="SearchString" class="form-control mr-sm-2" type="search" placeholder="Search Kangayam, jall">
+                    <button id="SearchBtn" class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
                 </form>
+
+
+
+
+
+
 
 
                 @{
@@ -275,7 +290,7 @@
                         Chennai, Tamil Nadu
                     </p>
                     <p class="small mb-1">
-                        📧 pranavsan28@gmail.com
+                        📧 JallikattuGPS@gmail.com
                     </p>
                     <p class="small mb-0">
                         📞 +91 76038 19251
@@ -307,7 +322,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
     @RenderSection("scripts", required: false)
 
 

@@ -14,6 +14,12 @@ namespace Jallikattu.Models
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.OrderItems = new HashSet<OrderItem>();
+        }
+    
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public decimal Price { get; set; }
@@ -34,5 +40,8 @@ namespace Jallikattu.Models
         public System.DateTime CreatedAt { get; set; }
         public int UpdatedBy { get; set; }
         public System.DateTime UpdatedAt { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }
