@@ -10,10 +10,10 @@ namespace Jallikattu.Data.BaseRepository
 {
     public class EntityBaseRepository<T>: IEntityBaseRepository<T> where T : class
     {
-        protected readonly JallikattuGPSEntities _context;
+        protected readonly Entities _context;
         protected readonly DbSet<T> _dbSet;
 
-        public EntityBaseRepository(JallikattuGPSEntities context)
+        public EntityBaseRepository(Entities context)
         {
             _context = context;
             _dbSet = context.Set<T>();

@@ -10,9 +10,10 @@ using Jallikattu.Models;
 
 namespace Jallikattu.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
-        private JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private Entities db = new Entities();
 
         // GET: Products
         public ActionResult Index()
@@ -143,10 +144,11 @@ namespace Jallikattu.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         //GET: Products/ProductDetails/5
         public ActionResult ProductDetails(int id)
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var product = db.Products
                               .FirstOrDefault(x => x.ProductID == id);

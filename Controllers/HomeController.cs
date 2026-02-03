@@ -13,7 +13,7 @@ namespace Jallikattu.Controllers
     {
         public ActionResult Index()
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var breeds = db.CattleBreedsTables.Take(3).ToList();
 
@@ -39,7 +39,7 @@ namespace Jallikattu.Controllers
 
         public ActionResult Blog()
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var blogPosts = db.BlogPostsTables.ToList();
                 return View(blogPosts);
@@ -64,7 +64,7 @@ namespace Jallikattu.Controllers
 
         public ActionResult CattleBreeds()
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var breeds = db.CattleBreedsTables.ToList();
                 return View(breeds);
@@ -73,7 +73,7 @@ namespace Jallikattu.Controllers
 
         public ActionResult Products()
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var products = db.Products.ToList();
                 return View(products);
@@ -101,7 +101,7 @@ namespace Jallikattu.Controllers
 
         public ActionResult GetEvents()
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var eventsFromDb = db.EventsTables.Where(e => e.Status==1).Select(e => new
                 {
@@ -154,7 +154,7 @@ namespace Jallikattu.Controllers
             }
 
 
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 EventsTable ev = new EventsTable
                 {

@@ -10,7 +10,7 @@ namespace Jallikattu.Controllers
 {
     public class SearchController : Controller
     {
-        private readonly JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private readonly Entities db = new Entities();
 
         public ActionResult Index(string SearchString)
         {

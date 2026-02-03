@@ -8,7 +8,7 @@ namespace Jallikattu.Data.BaseRepository
 {
     public class CattleService: EntityBaseRepository<CattleBreedsTable>, ICattleBreedService
     {
-        public CattleService(JallikattuGPSEntities context) : base(context)
+        public CattleService(Entities context) : base(context)
         {
 
         }

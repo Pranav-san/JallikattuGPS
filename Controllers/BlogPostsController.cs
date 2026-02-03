@@ -11,9 +11,10 @@ using Jallikattu.Models;
 
 namespace Jallikattu.Controllers
 {
+    [Authorize]
     public class BlogPostsController : Controller
     {
-        private JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private Entities db = new Entities();
 
         // GET: BlogPosts
         public ActionResult Index()
@@ -134,10 +135,11 @@ namespace Jallikattu.Controllers
         }
 
 
+        [AllowAnonymous]
         // GET: BlogPosts/PostDetails/5
         public ActionResult PostDetails(int id)
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var post = db.BlogPostsTables.FirstOrDefault(x => x.PostID == id);
 

@@ -14,12 +14,19 @@ namespace Jallikattu.Models
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderItems = new HashSet<OrderItem>();
+        }
+    
         public int OrderID { get; set; }
         public string UserId { get; set; }
         public decimal TotalAmount { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public string OrderStatus { get; set; }
     
-        public virtual OrderItem OrderItem { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model List<Jallikattu.Models.Order>
+
+@{
+    ViewBag.Title = "My Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="pt-4 mb-4 text-center">
+    @(User.IsInRole("Admin") ? "All Orders" : "My Orders")
+</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        No orders found.
+    </div>
+}
+else
+{
+    foreach (var order in Model)
+    {
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Order #@order.OrderID</strong><br />
+                    <small class="text-muted">
+                        @order.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")
+                    </small>
+                </div>
+
+                @if (order.OrderStatus=="Completed")
+                {
+                    <span class="badge bg-success">
+                        @order.OrderStatus
+                    </span>
+
+                }
+                else
+                {
+                    <span class="badge bg-warning">
+                        @order.OrderStatus
+                    </span>
+                }
+
+            </div>
+
+            <div class="card-body p-0">
+                <table class="table mb-0 text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <tr>
+                                <td>@item.Product.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>₹@item.UnitPrice</td>
+                                <td>₹@(item.UnitPrice * item.Quantity)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer text-end">
+                <strong>Total: ₹@order.TotalAmount</strong>
+            </div>
+        </div>
+    }
+}

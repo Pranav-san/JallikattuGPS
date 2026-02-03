@@ -56,7 +56,7 @@ namespace Jallikattu.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("", "Invalid login attempt");
+            ModelState.AddModelError("","Invalid Credentials");
             return View(model);
         }
 

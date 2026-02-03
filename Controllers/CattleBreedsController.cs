@@ -10,9 +10,10 @@ using Jallikattu.Models;
 
 namespace Jallikattu.Controllers
 {
+    [Authorize (Roles = "Admin")]
     public class CattleBreedsController : Controller
     {
-        private JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private Entities db = new Entities();
 
         // GET: CattleBreeds
         public ActionResult Index()
@@ -139,17 +140,12 @@ namespace Jallikattu.Controllers
         // GET: CattleInfo
         
 
-        public ActionResult CattleInfo()
-        {
-            return View();
-        }
-
+        [AllowAnonymous]
         public ActionResult CattleDetails(int id)
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
-                var breed = db.CattleBreedsTables
-                              .FirstOrDefault(x => x.CattleID == id);
+                var breed = db.CattleBreedsTables.FirstOrDefault(x => x.CattleID == id);
 
                 return View(breed);
             }

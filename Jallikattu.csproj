@@ -429,11 +429,6 @@
     <Content Include="Views\BlogPosts\Details.cshtml" />
     <Content Include="Views\BlogPosts\Edit.cshtml" />
     <Content Include="Views\BlogPosts\Index.cshtml" />
-    <Content Include="Views\Blog\Create.cshtml" />
-    <Content Include="Views\Blog\Delete.cshtml" />
-    <Content Include="Views\Blog\Details.cshtml" />
-    <Content Include="Views\Blog\Edit.cshtml" />
-    <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\CattleBreeds\CattleBreedsPanel.cshtml" />
     <Content Include="Views\CattleBreeds\Create.cshtml" />
     <Content Include="Views\CattleBreeds\Delete.cshtml" />
@@ -475,6 +470,8 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Checkout.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Order\OrderCompleted.cshtml" />
+    <Content Include="Views\Order\OrderListByUserIdAndRole.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

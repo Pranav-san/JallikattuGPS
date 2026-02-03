@@ -207,7 +207,7 @@
                         <span class="text-muted small me-2">
                             @if (User.IsInRole("Admin"))
                             {
-                                <a style="text-decoration:none" href="@Url.Action("AdminDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> displayName</a>
+                                <a style="text-decoration:none" href="@Url.Action("AdminDashBoard", "Home")"> <img style="width:20px" src="~/Images/icon/Profile_icon.png" /> @displayName</a>
 
                             }
                             else

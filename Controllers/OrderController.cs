@@ -4,6 +4,7 @@ using Microsoft.Owin.Security.Provider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,7 +12,7 @@ namespace Jallikattu.Controllers
 {
     public class OrderController : Controller
     {
-        private JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private Entities db = new Entities();
 
         private List<CartItem> GetCart()
         {
@@ -24,6 +25,33 @@ namespace Jallikattu.Controllers
         public ActionResult Index()
         {
             return View(GetCart());
+        }
+
+        public ActionResult OrderListByUserIdAndRole()
+        {
+            string userId = User.Identity.GetUserId();
+            bool isAdmin = User.IsInRole("Admin");
+
+            var orders = GetOrdersByUserIdAndRole(userId, isAdmin);
+
+            return View(orders);
+
+
+        }
+        public List<Order> GetOrdersByUserIdAndRole(string userId, bool isAdmin)
+        {
+            IQueryable<Order> query = db.Orders
+                .Include("OrderItems")
+                .Include("OrderItems.Product");
+
+            if (!isAdmin)
+            {
+                query = query.Where(o => o.UserId == userId);
+            }
+
+            return query
+                .OrderByDescending(o => o.CreatedAt)
+                .ToList();
         }
 
         public ActionResult AddToCart(int id)
@@ -81,29 +109,66 @@ namespace Jallikattu.Controllers
             if (!cart.Any())
                 return RedirectToAction("Index");
 
-            var order = new Order
-            {
-                UserId = User.Identity.GetUserId(),
-                CreatedAt = DateTime.Now,
-                OrderStatus = "Pending",
-                TotalAmount = cart.Sum(x => x.Price * x.Quantity)
-            };
+            return View(cart);
+        }
 
-            foreach (var item in cart)
+
+        [Authorize]
+        [HttpPost]
+
+        public ActionResult PaymentSuccess()
+        {
+            var cart = Session["Cart"] as List<CartItem>;
+
+            if (cart == null || !cart.Any())
+                return RedirectToAction("Index", "Home");
+
+            using (var tx = db.Database.BeginTransaction())
             {
-                db.OrderItems.Add(new OrderItem
+                try
                 {
-                    OrderID = order.OrderID,
-                    ProductID = item.ProductID,
-                    UnitPrice = item.Price,
-                    Quantity = item.Quantity
-                });
+                    var order = new Order
+                    {
+                        UserId = User.Identity.GetUserId(),
+                        CreatedAt = DateTime.Now,
+                        OrderStatus = "Pending",
+                        TotalAmount = cart.Sum(x => x.Price * x.Quantity)
+                    };
+
+                    db.Orders.Add(order);
+                    db.SaveChanges(); // Order inserted here
+
+                    foreach (var item in cart)
+                    {
+                        db.OrderItems.Add(new OrderItem
+                        {
+                            ProductID = item.ProductID,
+                            UnitPrice = item.Price,
+                            Quantity = item.Quantity,
+                            Order = order   // ✅ FIX
+                        });
+                    }
+
+                    db.SaveChanges();
+
+                    Session.Remove("Cart");
+
+                    tx.Commit();
+                    return RedirectToAction("OrderCompleted");
+                }
+                catch
+                {
+                    tx.Rollback();
+                    throw;
+                }
             }
+        }
 
-            db.SaveChanges();
 
-            // Store order id temporarily
-            Session["CurrentOrderId"] = order.OrderID;
+
+
+        public ActionResult OrderCompleted()
+        {
 
             return View();
         }

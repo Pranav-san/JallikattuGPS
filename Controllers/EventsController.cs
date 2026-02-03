@@ -8,20 +8,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Jallikattu.Models.Identity;
 
 namespace Jallikattu.Controllers
 {
+   
+    [Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
-        private JallikattuGPSEntities db = new JallikattuGPSEntities();
+        private Entities db = new Entities();
 
-        // GET: Events
-        //public ActionResult Index()
-        //{
-        //    return View(db.EventsTables.ToList());
-        //}
-
-        // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -152,9 +150,10 @@ namespace Jallikattu.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult Index(int? status)
         {
-            using (var db = new JallikattuGPSEntities())
+            using (var db = new Entities())
             {
                 var events = db.EventsTables.AsQueryable();
 
@@ -164,10 +163,8 @@ namespace Jallikattu.Controllers
                     events = events.Where(e => e.Status == status.Value);
                 }
 
-                //Optional ordering
-                events = events
-                         .OrderBy(e => e.Status)
-                         .ThenByDescending(e => e.EventDate);
+                
+                events = events.OrderBy(e => e.Status).ThenByDescending(e => e.EventDate);
 
                 ViewBag.SelectedStatus = status;
 

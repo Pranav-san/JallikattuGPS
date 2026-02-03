@@ -7,7 +7,25 @@
 <h2>AdminDashBoard</h2>
 
 <div class="row mt-4">
-
+    <!--Blog-->
+    <div class="col-md-6 mb-4">
+        <a href="/CattleBreeds/CattleBreedsPanel" class="text-decoration-none">
+            <div class="card shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <h3 class="mb-3">🛒 Orders </h3>
+                    <p class="text-muted">
+                        View All Orders
+                    </p>
+                    <a href="@Url.Action("OrderListByUserIdAndRole", "Order")">
+                        <span class="btn btn-success mt-2">
+                            Manage Blog Posts
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!--Blog-->
     <div class="col-md-6 mb-4">
         <a href="/CattleBreeds/CattleBreedsPanel" class="text-decoration-none">
             <div class="card shadow-sm h-100 text-center">
@@ -18,7 +36,7 @@
                     </p>
                     <a href="@Url.Action("Index", "BlogPosts")">
                         <span class="btn btn-success mt-2">
-                             Manage Blog Posts
+                            Manage Blog Posts
                         </span>
                     </a>
                 </div>
