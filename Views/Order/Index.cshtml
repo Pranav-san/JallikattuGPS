@@ -44,11 +44,13 @@
         </a>
     </div>
 
+
+
     <div class="col-md-6">
         <div class="d-flex flex-column align-items-md-end align-items-stretch gap-2 pe-5  pt-2">
 
             <!-- Google Pay -->
-            <button id="rzp-button" 
+            <button id="rzp-button"
                     class="btn btn-dark w-md-auto">
                 Pay with Google Pay
             </button>
@@ -56,80 +58,109 @@
             <!-- PayPal -->
             <div id="paypal-btn" class="w-100" style="max-width: 200px;">
 
-            </button>
 
+
+            </div>
         </div>
     </div>
-</div>
 
-</table>
-
+</div>>
 <hr />
 
 @section Scripts {
+    <script>
+    const isUserLoggedIn = @User.Identity.IsAuthenticated.ToString().ToLower();
+    const loginUrl = '@Url.Action("Login", "Account", new { returnUrl = Request.RawUrl })';
+    </script>
+
 
     <!-- PAYPAL -->
     <script src="https://www.paypal.com/sdk/js?client-id=Aao5LYxwtsSdLSvwxs4dOcIjAtgfuL_F7wlCxz-L3HmtncPOsW9rCzJOz5p6XsNrJGZ_JIReDWK6XPyB&currency=USD"></script>
 
     <script>
         paypal.Buttons({
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '@total'
-                        }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
 
-                    fetch('/Order/PaymentSuccess', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }).then(function () {
-                        window.location.href = '/Order/OrderCompleted';
-                    });
+    onClick: function () {
+        if (!isUserLoggedIn) {
+            window.location.href = loginUrl;
+            return false; // cancel PayPal flow
+        }
+        return true;
+    },
 
-                });
-            },
-            onError: function (err) {
-                alert("PayPal payment failed");
-                console.error(err);
-            }
-        }).render('#paypal-btn');
+    createOrder: function (data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: '@total'
+                }
+            }]
+        });
+    },
+
+    onApprove: function (data, actions) {
+        return actions.order.capture().then(function () {
+
+            fetch('/Order/PaymentSuccess', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function () {
+                window.location.href = '/Order/OrderCompleted';
+            });
+
+        });
+    },
+
+    onError: function (err) {
+        alert("PayPal payment failed");
+        console.error(err);
+    }
+
+}).render('#paypal-btn');
     </script>
 
     <!-- RAZORPAY (GOOGLE PAY) -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
-        var options = {
-            "key": "YOUR_RAZORPAY_KEY",
-            "amount": "@(total * 100)", // paise
-            "currency": "INR",
-            "name": "Jallikattu GPS",
-            "description": "Order Payment",
-            "handler": function (response) {
-                window.location.href = '/Order/CompleteOrderGPay';
-            }
-        };
+    var options = {
+        key: "YOUR_RAZORPAY_KEY", // replace with real key
+        amount: "@(total * 100)", // amount in paise
+        currency: "INR",
+        name: "Jallikattu GPS",
+        description: "Order Payment",
 
-        var rzp = new Razorpay(options);
-        document.getElementById('rzp-button').onclick = function (e) {
-            rzp.open();
-            e.preventDefault();
-        };
+        handler: function (response) {
+            // Success → backend confirmation
+            window.location.href = '/Order/CompleteOrderGPay';
+        },
+
+        theme: {
+            color: "#2f3e34"
+        }
+    };
+
+    var rzp = new Razorpay(options);
+
+    document.getElementById("rzp-button").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // 🔐 AUTH CHECK
+        if (!isUserLoggedIn) {
+            window.location.href = loginUrl;
+            return;
+        }
+
+        // ✅ Open Razorpay only if logged in
+        rzp.open();
+    });
     </script>
+
     <style>
         @@media (min-width: 768px) {
-    .w-md-auto {
-        width: auto !important;
-    }
-}
-
+            .w-md-auto {
+                width: auto !important;
+            }
+        }
     </style>
 }

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Jallikattu.Controllers
 {
+    
     public class OrderController : Controller
     {
         private Entities db = new Entities();
@@ -115,7 +116,6 @@ namespace Jallikattu.Controllers
 
         [Authorize]
         [HttpPost]
-
         public ActionResult PaymentSuccess()
         {
             var cart = Session["Cart"] as List<CartItem>;

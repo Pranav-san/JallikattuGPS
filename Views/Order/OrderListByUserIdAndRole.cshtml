@@ -48,16 +48,19 @@ else
                 <table class="table mb-0 text-center">
                     <thead class="table-light">
                         <tr>
+                            
                             <th>Product</th>
                             <th>Qty</th>
                             <th>Unit Price</th>
                             <th>Total</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in order.OrderItems)
                         {
                             <tr>
+                                
                                 <td>@item.Product.ProductName</td>
                                 <td>@item.Quantity</td>
                                 <td>₹@item.UnitPrice</td>
